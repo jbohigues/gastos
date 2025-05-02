@@ -1,5 +1,7 @@
 ---
 import "@styles/global.css";
+
+const { title } = Astro.props;
 ---
 
 <!doctype html>
@@ -8,12 +10,30 @@ import "@styles/global.css";
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>Gastos App</title>
+    <title>{title}</title>
+    <meta
+      name="description"
+      content="GastosApp - registra ingresos y gastos, controla tus cuentas, analiza estadísticas y gráficas, y toma el control de tu dinero desde cualquier lugar."
+    />
+
+    <!-- Etiquetas Open Graph (imprescindibles para compartir en redes sociales) -->
+    <!-- <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="GastosApp - Controla tus finanzas fácilmente"
+    />
+    <meta
+      property="og:description"
+      content="Gestiona tus finanzas fácilmente con GastosApp: registra ingresos y gastos, controla tus cuentas, analiza estadísticas y gráficas, y toma el control de tu dinero desde cualquier lugar."
+    />
+    <meta property="og:url" content="https://tudominio.com" />
+    <meta property="og:image" content="https://tudominio.com/og-image.png" />
+    <meta property="og:site_name" content="GastosApp" /> -->
   </head>
   <body
-    class="m-0 flex min-h-dvh w-full flex-col bg-gradient-to-br from-black via-cyan-950 to-cyan-800 bg-fixed text-white"
+    class="bg-gradient-to-br from-black via-cyan-950 to-cyan-800 bg-fixed text-white"
   >
-    <main class="grow">
+    <main class="mt-12 w-full">
       <slot />
     </main>
     <footer class="pt-40 pb-4 text-center">
@@ -23,9 +43,12 @@ import "@styles/global.css";
 </html>
 
 <style>
-  html {
+  html,
+  body {
     margin: 0;
     width: 100%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
   }
 </style>
