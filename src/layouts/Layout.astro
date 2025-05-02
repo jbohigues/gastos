@@ -10,14 +10,20 @@ import "@styles/global.css";
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>Gastos App</title>
   </head>
-  <body>
-    <slot />
+  <body
+    class="m-0 flex min-h-dvh w-full flex-col bg-gradient-to-br from-black via-cyan-950 to-cyan-800 bg-fixed text-white"
+  >
+    <main class="grow">
+      <slot />
+    </main>
+    <footer class="pt-40 pb-4 text-center">
+      <p>© 2025 GastosApp - Controla tus finanzas fácilmente</p>
+    </footer>
   </body>
 </html>
 
 <style>
-  html,
-  body {
+  html {
     margin: 0;
     width: 100%;
     height: 100%;
