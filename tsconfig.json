@@ -5,9 +5,11 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
+      "@lib/*": ["src/lib/*"],
       "@pages/*": ["src/pages/*"],
       "@styles/*": ["src/styles/*"],
       "@assets/*": ["src/assets/*"],
+      "@actions/*": ["src/actions/*"],
       "@layouts/*": ["src/layouts/*"],
       "@components/*": ["src/components/*"]
     }
