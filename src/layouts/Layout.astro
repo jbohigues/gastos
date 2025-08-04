@@ -1,4 +1,6 @@
 ---
+import "@fontsource-variable/inter";
+import "@fontsource/poppins";
 import "@styles/global.css";
 
 const { title } = Astro.props;
@@ -30,19 +32,17 @@ const { title } = Astro.props;
     <meta property="og:image" content="https://tudominio.com/og-image.png" />
     <meta property="og:site_name" content="GastosApp" /> -->
   </head>
-  <body
-    class="bg-gradient-to-br from-black via-cyan-950 to-cyan-800 bg-fixed text-white"
-  >
-    <main class="mt-12 w-full">
+  <body>
+    <main class="w-full px-16 py-8">
       <slot />
     </main>
-    <footer class="pt-40 pb-4 text-center">
+    <footer class="pb-4 text-center">
       <p>© 2025 GastosApp - Controla tus finanzas fácilmente</p>
     </footer>
   </body>
 </html>
 
-<style>
+<style is:global>
   html,
   body {
     margin: 0;
@@ -50,5 +50,21 @@ const { title } = Astro.props;
     height: 100%;
     display: flex;
     flex-direction: column;
+    color: white;
+    background-color: var(--color-primary);
+    font-family: "Inter", Arial, Helvetica, sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: "Poppins", sans-serif;
+  }
+
+  button,
+  input,
+  label {
+    font-family: "Inter", Arial, Helvetica, sans-serif;
   }
 </style>

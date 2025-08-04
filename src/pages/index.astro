@@ -1,13 +1,10 @@
 ---
+import Header from "@components/Header.astro";
+import MenuButtons from "../components/MenuButtons.astro";
 import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
-  <section class="h-full w-full pt-[5%] text-center">
-    <h1 class="text-5xl font-bold">¡Bienvenidos a Gastos App!</h1>
-    <p class="m-auto mt-6 max-w-[70ch] text-xl">
-      En esta aplicación podrás gestionar todas tus cuentas, insertar ingresos y
-      gastos, ver estadísticas y mucho más.
-    </p>
-  </section>
+  <Header />
+  <MenuButtons />
 </Layout>
