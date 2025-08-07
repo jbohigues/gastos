@@ -1,10 +1,56 @@
 ---
+import Card from "@components/Card.astro";
 import Header from "@components/Header.astro";
-import MenuButtons from "../components/MenuButtons.astro";
-import Layout from "../layouts/Layout.astro";
+import Layout from "@layouts/Layout.astro";
+
+const cards = [
+  {
+    title: "Balance Total",
+    quantity: 10050.5,
+    icon: "wallet",
+    comment: "+100.5% del objetivo",
+    color: "text-blue-400",
+  },
+  {
+    title: "Ingresos del Mes",
+    quantity: 3500.0,
+    icon: "income",
+    comment: "+12% vs mes anterior",
+    color: "text-green-400",
+  },
+  {
+    title: "Gastos del Mes",
+    quantity: 950.0,
+    icon: "expenses",
+    comment: "-5% vs mes anterior",
+    color: "text-red-400",
+  },
+  {
+    title: "Dinero Prestado",
+    quantity: 450.0,
+    icon: "borrowed_money",
+    comment: "2 préstamos pendientes",
+    color: "text-yellow-400",
+  },
+];
 ---
 
 <Layout>
   <Header />
-  <MenuButtons />
+  <!-- <MenuButtons /> -->
+  <section class="grid grid-cols-1 gap-4 py-8 md:grid-cols-2 lg:grid-cols-4">
+    {
+      cards.map((card) => (
+        <Card
+          title={card.title}
+          quantity={card.quantity}
+          icon={card.icon}
+          comment={card.comment}
+          color={card.color}
+        />
+      ))
+    }
+  </section>
+  <!-- Transacciones recientes -->
+  <!-- Objetivos de ahorros -->
 </Layout>
