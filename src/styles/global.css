@@ -11,6 +11,14 @@
   @apply w-full max-w-7xl px-4 py-4 md:px-16 md:py-8 xl:mx-auto;
 }
 
+.item-menu {
+  @apply hover:bg-details w-full rounded-sm py-1 text-center text-sm hover:cursor-pointer;
+}
+
+.item-menu-active {
+  @apply bg-dark-gray;
+}
+
 .card {
   @apply bg-secondary border-details flex-1 rounded-xl border px-6 py-4;
 }

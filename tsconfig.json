@@ -11,7 +11,8 @@
       "@assets/*": ["src/assets/*"],
       "@actions/*": ["src/actions/*"],
       "@layouts/*": ["src/layouts/*"],
-      "@components/*": ["src/components/*"]
+      "@components/*": ["src/components/*"],
+      "@sections/*": ["src/sections/*"]
     }
   }
 }
