@@ -4,13 +4,22 @@
   --color-primary: #030712;
   --color-secondary: #101828;
   --color-details: #394152;
-  --color-secondary-hover: #394152;
+  --color-dark-gray: #1f2937;
 }
 
 .base-layout {
-  @apply w-full max-w-7xl px-8 py-4 md:px-16 md:py-8 xl:mx-auto;
+  @apply w-full max-w-7xl px-4 py-4 md:px-16 md:py-8 xl:mx-auto;
 }
 
-.btn-primary {
-  @apply bg-secondary hover:bg-secondary-hover w-full rounded-sm px-4 py-2 hover:cursor-pointer;
+.card {
+  @apply bg-secondary border-details flex-1 rounded-xl border px-6 py-4;
+}
+
+.hide-scrollbar {
+  overflow: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
 }
