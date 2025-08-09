@@ -1,6 +1,8 @@
 ---
 import Card from "@components/Card.astro";
 import Header from "@components/Header.astro";
+import RecentTransactions from "@components/RecentTransactions.astro";
+import SavingGoals from "@components/SavingGoals.astro";
 import Layout from "@layouts/Layout.astro";
 
 const cards = [
@@ -28,7 +30,7 @@ const cards = [
   {
     title: "Dinero Prestado",
     quantity: 450.0,
-    icon: "borrowed_money",
+    icon: "borrowed-money",
     comment: "2 préstamos pendientes",
     color: "text-yellow-400",
   },
@@ -37,7 +39,6 @@ const cards = [
 
 <Layout>
   <Header />
-  <!-- <MenuButtons /> -->
   <section class="grid grid-cols-1 gap-4 py-8 md:grid-cols-2 lg:grid-cols-4">
     {
       cards.map((card) => (
@@ -51,6 +52,8 @@ const cards = [
       ))
     }
   </section>
-  <!-- Transacciones recientes -->
-  <!-- Objetivos de ahorros -->
+  <section class="flex flex-col gap-4 md:flex-row">
+    <RecentTransactions />
+    <SavingGoals />
+  </section>
 </Layout>
