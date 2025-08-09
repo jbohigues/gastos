@@ -11,13 +11,11 @@ interface Props {
 const { title, quantity, icon, comment, color } = Astro.props;
 ---
 
-<article
-  class="bg-secondary border-details flex-1 rounded-xl border-2 px-6 py-4 shadow"
->
+<article class="card">
   <p class="mb-4 flex items-center justify-between gap-2">
     {title}
     <Icon name={icon} class={color} />
   </p>
-  <h2 class="text-2xl font-bold">{quantity} €</h2>
+  <h2 class={`text-2xl font-bold ${color}`}>{quantity} €</h2>
   <small class="text-gray-400">{comment}</small>
 </article>
