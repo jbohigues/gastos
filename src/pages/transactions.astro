@@ -1,14 +1,10 @@
 ---
 import MainLayout from "@layouts/MainLayout.astro";
-import RecentTransactions from "@sections/RecentTransactions.astro";
-import ResumeDashboard from "@sections/ResumeDashboard.astro";
-import SavingGoals from "@sections/SavingGoals.astro";
+import RecentTransactions from "@sections/dashboard/RecentTransactions.astro";
 ---
 
 <MainLayout>
-  <ResumeDashboard />
   <section class="flex flex-col gap-4 md:flex-row">
-    <RecentTransactions />
-    <SavingGoals />
+    <RecentTransactions title="Historial de Transacciones" />
   </section>
 </MainLayout>

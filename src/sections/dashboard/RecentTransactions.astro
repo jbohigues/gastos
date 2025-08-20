@@ -38,6 +38,11 @@ const iconByType = {
   [TransactionType.INCOME]: { icon: "arrow-up", color: "text-green-500" },
   [TransactionType.EXPENSE]: { icon: "arrow-down", color: "text-red-500" },
 };
+
+interface Props {
+  title: string;
+}
+const { title } = Astro.props;
 ---
 
 <article class="card">
@@ -45,7 +50,7 @@ const iconByType = {
     class="mb-4 flex items-center gap-2 text-base font-semibold text-white md:text-lg"
   >
     <Icon name="calendar" class="text-blue-400" />
-    Transacciones Recientes
+    {title}
   </h2>
 
   <div class="hide-scrollbar flex max-h-[300px] flex-col gap-3 overflow-y-auto">

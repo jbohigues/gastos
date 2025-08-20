@@ -1,0 +1,45 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  title: string;
+  saved: number;
+  target: number;
+  deadline: string;
+}
+const { title, saved, target, deadline } = Astro.props;
+
+function calcPercentage(saved: number, target: number) {
+  if (!target || target <= 0) return 0;
+  const raw = (saved / target) * 100;
+  return Math.max(0, Math.min(raw, 100)).toFixed(1);
+}
+
+const percentage = calcPercentage(saved, target);
+---
+
+<article class="card">
+  <header class="flex items-center justify-between pb-6">
+    <h3 class="flex-1 font-semibold text-white">{title}</h3>
+    <Icon name="saving-goals" class="h-[20px] w-[20px] text-purple-400" />
+  </header>
+  <p class="flex justify-between">
+    <span class="text-sm text-white/80">Progreso</span>
+    <span class="font-poppins text-white">
+      {saved} € / {target} €
+    </span>
+  </p>
+  <div class="my-2 h-3 w-full rounded-md bg-gray-700">
+    <div
+      class="h-full rounded-md bg-purple-500"
+      style={`width: ${percentage}%`}
+    >
+    </div>
+  </div>
+  <footer class="flex items-center justify-between text-sm">
+    <span class="font-poppins font-medium text-purple-400">
+      {percentage}% completado
+    </span>
+    <span class="text-white/50">{deadline}</span>
+  </footer>
+</article>
