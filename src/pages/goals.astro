@@ -1,10 +1,32 @@
 ---
+import GoalsList from "@components/GoalsList.astro";
 import MainLayout from "@layouts/MainLayout.astro";
-import HistoricGoals from "@sections/goals/HistoricGoals.astro";
+import type { Goal } from "@lib/interfaces/Goal.interface";
+
+const goals: Goal[] = [
+  {
+    title: "Vacaciones",
+    saved: 750,
+    target: 2000,
+    deadline: "2024-06-01",
+  },
+  {
+    title: "Fondo de Emergencia",
+    saved: 3200,
+    target: 5000,
+    deadline: "2024-12-31",
+  },
+  {
+    title: "Nuevo Laptop",
+    saved: 400,
+    target: 1500,
+    deadline: "2024-04-01",
+  },
+];
 ---
 
 <MainLayout>
   <section class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-    <HistoricGoals />
+    <GoalsList goals={goals} />
   </section>
 </MainLayout>
