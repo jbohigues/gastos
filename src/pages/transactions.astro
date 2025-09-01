@@ -1,10 +1,17 @@
 ---
+import TransactionList from "@components/TransactionList.astro";
 import MainLayout from "@layouts/MainLayout.astro";
-import RecentTransactions from "@sections/dashboard/RecentTransactions.astro";
+import type { Transaction } from "@lib/interfaces/Transaction.interface";
+import { transactions } from "@lib/mocks/transactions.mock";
+
+const transactionList: Transaction[] = transactions;
 ---
 
 <MainLayout>
   <section class="flex flex-col gap-4 md:flex-row">
-    <RecentTransactions title="Historial de Transacciones" />
+    <TransactionList
+      title="Historial de Transacciones"
+      transactions={transactionList}
+    />
   </section>
 </MainLayout>
