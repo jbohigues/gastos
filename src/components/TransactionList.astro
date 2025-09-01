@@ -1,0 +1,53 @@
+---
+import { iconByType } from "@lib/consts/IconByTpe";
+import { TransactionType } from "@lib/enums/TransactionType.enum";
+import type { Transaction } from "@lib/interfaces/Transaction.interface";
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  title: string;
+  transactions: Transaction[];
+}
+const { title, transactions } = Astro.props;
+---
+
+<article class="card">
+  <h2
+    class="mb-4 flex items-center gap-2 text-base font-semibold text-white md:text-lg"
+  >
+    <Icon name="calendar" class="text-blue-400" />
+    {title}
+  </h2>
+
+  <div class="hide-scrollbar flex max-h-[300px] flex-col gap-3 overflow-y-auto">
+    {
+      transactions.map((transaction) => {
+        const iconConfig = iconByType[transaction.type];
+        return (
+          <div class="bg-dark-gray flex flex-col justify-between gap-4 rounded-lg p-4 sm:flex-row sm:items-center md:gap-0">
+            <div class="flex items-center gap-3">
+              <span
+                class={`bg-opacity-20 flex h-8 w-8 items-center justify-center rounded-full ${iconConfig.color}`}
+              >
+                <Icon
+                  name={iconConfig.icon}
+                  class={`${iconConfig.color} h-5 w-5`}
+                />
+              </span>
+              <div>
+                <p class="font-medium text-white">{transaction.title}</p>
+                <p class="text-sm text-gray-400">{transaction.comment}</p>
+                <p class="text-xs text-gray-500">{transaction.date}</p>
+              </div>
+            </div>
+            <p
+              class={`text-end text-lg font-bold md:text-center md:text-xl ${iconConfig.color}`}
+            >
+              {`${transaction.type === TransactionType.INCOME ? "+" : "-"}${transaction.quantity.toFixed(2)} €`}
+            </p>
+          </div>
+        );
+      })
+    }
+  </div>
+</article>

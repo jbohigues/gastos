@@ -1,0 +1,16 @@
+---
+import Header from "@components/Header.astro";
+import MenuButtons from "@components/MenuButtons.astro";
+import Layout from "./Layout.astro";
+---
+
+<Layout>
+  <main class="base-layout">
+    <Header />
+    <MenuButtons />
+    <slot />
+  </main>
+  <footer class="base-layout text-center">
+    <p>© 2025 Monexis - Controla tus finanzas fácilmente</p>
+  </footer>
+</Layout>

@@ -3,19 +3,15 @@ import TransactionList from "@components/TransactionList.astro";
 import MainLayout from "@layouts/MainLayout.astro";
 import type { Transaction } from "@lib/interfaces/Transaction.interface";
 import { transactions } from "@lib/mocks/transactions.mock";
-import ResumeDashboard from "@sections/dashboard/ResumeDashboard.astro";
-import SavingGoals from "@sections/dashboard/SavingGoals.astro";
 
-const transactionsList: Transaction[] = transactions;
+const transactionList: Transaction[] = transactions;
 ---
 
 <MainLayout>
-  <ResumeDashboard />
   <section class="flex flex-col gap-4 md:flex-row">
     <TransactionList
-      title="Transacciones Recientes"
-      transactions={transactionsList}
+      title="Historial de Transacciones"
+      transactions={transactionList}
     />
-    <SavingGoals />
   </section>
 </MainLayout>

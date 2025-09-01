@@ -1,0 +1,29 @@
+---
+const pathname = new URL(Astro.request.url).pathname;
+const currentPath = pathname.slice(1);
+---
+
+<section
+  class="bg-secondary my-8 flex flex-col gap-2 rounded-md p-1 sm:flex-row"
+>
+  <a
+    href="/"
+    class={`item-menu flex-1 ${currentPath === "" ? "item-menu-active" : ""}`}
+    >Dashboard</a
+  >
+  <a
+    href="/transactions"
+    class={`item-menu flex-1 ${currentPath === "transactions" ? "item-menu-active" : ""}`}
+    >Transacciones</a
+  >
+  <a
+    href="/goals"
+    class={`item-menu flex-1 ${currentPath === "goals" ? "item-menu-active" : ""}`}
+    >Objetivos</a
+  >
+  <a
+    href="/loans"
+    class={`item-menu flex-1 ${currentPath === "loans" ? "item-menu-active" : ""}`}
+    >Préstamos</a
+  >
+</section>

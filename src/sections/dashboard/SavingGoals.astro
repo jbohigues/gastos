@@ -1,0 +1,50 @@
+---
+import { savingGoals } from "@lib/mocks/goals.mock";
+import { Icon } from "astro-icon/components";
+
+function calcPercentage(saved: number, target: number) {
+  if (!target || target <= 0) return 0;
+  const raw = (saved / target) * 100;
+  return Math.max(0, Math.min(raw, 100)).toFixed(1);
+}
+---
+
+<article class="card">
+  <h2
+    class="mb-4 flex items-center gap-2 text-base font-semibold text-white md:text-lg"
+  >
+    <Icon name="saving-goals" class="text-purple-400" />
+    Objetivos de Ahorro
+  </h2>
+
+  <div class="hide-scrollbar flex max-h-[300px] flex-col gap-3 overflow-y-auto">
+    {
+      savingGoals.map((savingGoal) => {
+        const percentage = calcPercentage(savingGoal.saved, savingGoal.target);
+
+        return (
+          <div class="bg-dark-gray rounded-lg p-4">
+            <header class="flex items-center justify-between pb-2">
+              <h3 class="font-semibold text-white">{savingGoal.title}</h3>
+              <span class="text-sm text-white/80">
+                {savingGoal.saved} € / {savingGoal.target} €
+              </span>
+            </header>
+            <div class="h-2 w-full rounded bg-gray-700">
+              <div
+                class={`h-full rounded bg-purple-500`}
+                style={`width: ${percentage}%`}
+              />
+            </div>
+            <footer class="flex items-center justify-between text-sm">
+              <span class="font-medium text-purple-400">
+                {percentage}% completado
+              </span>
+              <span class="text-white/50">{savingGoal.deadline}</span>
+            </footer>
+          </div>
+        );
+      })
+    }
+  </div>
+</article>
