@@ -1,11 +1,45 @@
 ---
+import LoanList from "@components/LoanList.astro";
 import MainLayout from "@layouts/MainLayout.astro";
-import ResumeDashboard from "@sections/dashboard/ResumeDashboard.astro";
+import { LoanState } from "@lib/enums/LoanState.enum";
+import type { Loan } from "@lib/interfaces/Loan.interface";
+import { loans } from "@lib/mocks/loans.mock";
+
+const loansGiven: Loan[] = loans.filter(
+  (loan) => loan.status === LoanState.GIVEN
+);
+const loansReceived: Loan[] = loans.filter(
+  (loan) => loan.status === LoanState.RECEIVED
+);
+const loansResolved: Loan[] = loans.filter(
+  (loan) => loan.status === LoanState.RESOLVED
+);
 ---
 
 <MainLayout>
-  <ResumeDashboard />
   <section class="flex flex-col gap-4 md:flex-row">
-    <h2>Préstamos</h2>
+    <LoanList
+      loans={loansReceived}
+      title="Préstamos que debes"
+      color="red"
+      classProps="border-red-800 bg-red-900/20"
+      emptyMessage="¡Muy bien, no debes nada!"
+    />
+    <LoanList
+      loans={loansGiven}
+      title="Préstamos que te deben"
+      color="yellow"
+      classProps="border-yellow-800 bg-yellow-900/20"
+      emptyMessage="No has prestado dinero a nadie."
+    />
+  </section>
+  <section class="mt-4">
+    <LoanList
+      loans={loansResolved}
+      title="Préstamos Resueltos"
+      color="green"
+      classProps="border-green-800 bg-green-900/20"
+      emptyMessage="No tienes préstamos resueltos."
+    />
   </section>
 </MainLayout>

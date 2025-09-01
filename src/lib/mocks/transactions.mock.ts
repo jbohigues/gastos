@@ -3,6 +3,7 @@ import type { Transaction } from "@lib/interfaces/Transaction.interface";
 
 export const transactions: Transaction[] = [
   {
+    id: "1",
     title: "Salario",
     comment: "Salario mensual",
     date: "2025-08-09",
@@ -10,6 +11,7 @@ export const transactions: Transaction[] = [
     type: TransactionType.INCOME,
   },
   {
+    id: "2",
     title: "Alquiler",
     comment: "Alquiler piso",
     date: "2025-08-08",
@@ -17,6 +19,7 @@ export const transactions: Transaction[] = [
     type: TransactionType.EXPENSE,
   },
   {
+    id: "3",
     title: "Supermercado",
     comment: "Compras semanales",
     date: "2025-08-07",

@@ -1,0 +1,52 @@
+---
+import type { Loan } from "@lib/interfaces/Loan.interface";
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  title: string;
+  color: string;
+  classProps: string;
+  emptyMessage: string;
+  loans: Loan[];
+}
+
+const { title, color, classProps, emptyMessage, loans } = Astro.props;
+---
+
+<article class="card">
+  <h2
+    class="mb-4 flex items-center gap-2 text-base font-semibold text-white md:text-lg"
+  >
+    <Icon name="borrowed-money" class={`text-${color}-400`} />
+    {title}
+  </h2>
+
+  <div class="hide-scrollbar flex max-h-[300px] flex-col gap-3 overflow-y-auto">
+    {
+      loans.length === 0 ? (
+        <p>{emptyMessage}</p>
+      ) : (
+        loans.map((loan) => {
+          return (
+            <div
+              class={`flex flex-col justify-between gap-4 rounded-lg border p-4 sm:flex-row sm:items-center md:gap-0 ${classProps}`}
+            >
+              <div class="flex items-center gap-3">
+                <div>
+                  <p class="font-medium text-white">{loan.contact}</p>
+                  <p class="text-sm text-gray-400">{loan.description}</p>
+                  <p class="text-xs text-gray-500">{loan.date}</p>
+                </div>
+              </div>
+              <p
+                class={`text-end text-lg font-bold md:text-center md:text-xl text-${color}-400`}
+              >
+                {`${loan.amount.toFixed(2)} €`}
+              </p>
+            </div>
+          );
+        })
+      )
+    }
+  </div>
+</article>
