@@ -11,6 +11,21 @@ interface Props {
 }
 
 const { title, color, classProps, emptyMessage, loans } = Astro.props;
+
+
+function getPaid(loan: Loan) {
+  return loan.payments.reduce((acc, payment) => acc + payment.amount, 0);
+}
+
+function calcLoanPendent(loan: Loan) {
+  return loan.amount - getPaid(loan);
+}
+
+function calcPercentage(paid: number, amount: number) {
+  if (!amount || amount <= 0) return 0;
+  const raw = (paid / amount) * 100;
+  return Math.max(0, Math.min(raw, 100)).toFixed(1);
+}
 ---
 
 <article class="card">
@@ -27,22 +42,79 @@ const { title, color, classProps, emptyMessage, loans } = Astro.props;
         <p>{emptyMessage}</p>
       ) : (
         loans.map((loan) => {
+          const paid = getPaid(loan);
+          const pendent = calcLoanPendent(loan);
+          const percentage = calcPercentage(paid, loan.amount);
+
           return (
             <div
-              class={`flex flex-col justify-between gap-4 rounded-lg border p-4 sm:flex-row sm:items-center md:gap-0 ${classProps}`}
+              class={`flex flex-col gap-4 rounded-lg border p-4 ${classProps}`}
             >
-              <div class="flex items-center gap-3">
-                <div>
-                  <p class="font-medium text-white">{loan.contact}</p>
-                  <p class="text-sm text-gray-400">{loan.description}</p>
-                  <p class="text-xs text-gray-500">{loan.date}</p>
+              <div class={`flex items-start justify-between gap-4 md:gap-0`}>
+                <div class="min-w-0 flex-1">
+                  <p class="truncate font-medium text-white">{loan.contact}</p>
+                  <p class="truncate text-sm text-gray-400">
+                    {loan.description}
+                  </p>
+                  <p class="truncate text-xs text-gray-500">
+                    {loan.date.toLocaleDateString("es-ES", {
+                      day: "2-digit",
+                      month: "2-digit",
+                      year: "numeric",
+                    })}
+                  </p>
+                </div>
+                <div class="flex flex-shrink-0 flex-col items-end">
+                  <p
+                    class={`text-end text-lg font-bold md:text-center md:text-xl text-${color}-400`}
+                  >
+                    {`${pendent.toLocaleString("es-ES", { minimumFractionDigits: 2 })} €`}
+                  </p>
+                  <p class="text-right text-xs text-gray-400">
+                    de
+                    {loan.amount.toLocaleString("es-ES", {
+                      minimumFractionDigits: 2,
+                    })}
+                    €
+                  </p>
                 </div>
               </div>
-              <p
-                class={`text-end text-lg font-bold md:text-center md:text-xl text-${color}-400`}
-              >
-                {`${loan.amount.toFixed(2)} €`}
-              </p>
+
+              {loan.payments.length > 0 && (
+                <div>
+                  <p class="flex items-center justify-between text-xs text-gray-500 md:text-sm">
+                    <span>Pagado:</span>
+                    <span>{percentage}%</span>
+                  </p>
+                  <div class="h-2 w-full rounded-md bg-gray-700">
+                    <div
+                      class="h-full rounded-md bg-gray-300"
+                      style={`width: ${percentage}%`}
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <p class="truncate text-xs text-gray-500 md:text-sm">
+                    Historial de pagos:
+                  </p>
+                  {loan.payments.map((payment) => {
+                    return (
+                      <p class="flex justify-between text-xs text-gray-500 md:text-sm">
+                        <span class="font-semibold">
+                          {payment.description}-{" "}
+                          {payment.date.toLocaleDateString("es-ES", {
+                            day: "2-digit",
+                            month: "2-digit",
+                            year: "numeric",
+                          })}
+                        </span>
+                        <span>{payment.amount} €</span>
+                      </p>
+                    );
+                  })}
+                </div>
+              )}
             </div>
           );
         })

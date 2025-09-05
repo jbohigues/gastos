@@ -4,7 +4,15 @@ export interface Loan {
   id: string;
   contact: string;
   description: string;
-  date: string;
+  date: Date;
   amount: number;
+  payments: Payments[];
   status: LoanState;
+}
+
+export interface Payments {
+  id: string;
+  date: Date;
+  amount: number;
+  description: string;
 }
